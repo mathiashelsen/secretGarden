@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Add this script to your crontab to make it run every 5 minutes:
+# */5 * * * * /home/pi/secretGarden/getMeasurents.sh
+#
+
+
 date +"%d/%m/%Y %H:%M" > tmp
 read timeOfDay < tmp
 echo ${timeOfDay} | tr -s '\n' '\t' >> temperature.txt
