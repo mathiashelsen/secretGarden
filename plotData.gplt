@@ -1,0 +1,36 @@
+reset
+
+load 'parula.pal'
+
+set timefmt "%d/%m/%Y %H:%M"
+set xdata time
+set format x "%H:%M"
+set terminal pngcairo color enhanced
+
+unset key
+set key top center box opaque
+
+set ylabel "Temperature [{/Symbol \260}C]"
+set y2label "Humidity [%]"
+
+set ytics nomirror
+set y2tics nomirror
+
+set output "/var/www/html/lastHourTemp.png"
+plot "/home/pi/secretGarden/lastHourTemp.txt" u 1:3 w linesp ls 1 title "Temperature", \
+"/home/pi/secretGarden/lastHourHum.txt" u 1:(550 - $3)/2.0 w linesp ls 5 axis x1y2 title "Soil Humidity"
+unset output
+
+unset key
+set output "/var/www/html/lastDayTemp.png"
+plot "/home/pi/secretGarden/lastDayTemp.txt" u 1:3 every 3 w linesp ls 1, \
+"/home/pi/secretGarden/lastDayHum.txt" u 1:(550 - $3)/2.0 every 3 w linesp ls 5 axis x1y2 
+unset output 
+
+set format x "%d-%H h"
+set output "/var/www/html/allTime.png"
+plot "/home/pi/secretGarden/temp.txt" u 1:3 w l ls 1, \
+"/home/pi/secretGarden/humidity.txt" u 1:(550 - $3)/2.0 w l ls 5 axis x1y2 
+unset output
+
+reset
