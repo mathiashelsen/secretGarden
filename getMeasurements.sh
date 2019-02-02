@@ -4,7 +4,8 @@
 # */5 * * * * /home/pi/secretGarden/getMeasurents.sh
 #
 
-
+cd /home/pi/secretGarden
+ 
 date +"%d/%m/%Y %H:%M" > tmp
 read timeOfDay < tmp
 echo ${timeOfDay} | tr -s '\n' '\t' >> temperature.txt
@@ -14,7 +15,7 @@ echo ${timeOfDay} | tr -s '\n' '\t' >> humidity.txt
 cat soilHumidity.tmp >> humidity.txt
 
 #wget 192.168.1.191 -O tmptemperature.txt
-./readTemp.py >> temperature.txt
+/home/pi/secretGarden/readTemp.py >> temperature.txt
 
 wc -l temperature.txt > tmp
 read lines filename < tmp
@@ -31,4 +32,4 @@ else
 	cat humidity.txt > lastDayHum.txt
 fi
 
-gnuplot /home/pi/plotData.gplt
+gnuplot /home/pi/secretGarden/plotData.gplt
