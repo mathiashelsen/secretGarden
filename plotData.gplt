@@ -5,10 +5,10 @@ load 'parula.pal'
 set timefmt "%d/%m/%Y %H:%M"
 set xdata time
 set format x "%H:%M"
-set terminal pngcairo color enhanced
+set terminal pngcairo color enhanced size 960,480
 
 unset key
-set key top center box opaque
+set key top center box opaque above
 
 set ylabel "Temperature [{/Symbol \260}C]"
 set y2label "Humidity [%]"
