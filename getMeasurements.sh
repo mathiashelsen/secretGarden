@@ -10,7 +10,8 @@ date +"%d/%m/%Y %H:%M" > tmp
 read timeOfDay < tmp
 echo ${timeOfDay} | tr -s '\n' '\t' >> temperature.txt
 
-wget 192.168.1.191 -O soilHumidity.tmp
+#wget 192.168.1.191 -O soilHumidity.tmp
+./serialReadArduino.py > soilHumidity.tmp
 echo ${timeOfDay} | tr -s '\n' '\t' >> humidity.txt
 cat soilHumidity.tmp >> humidity.txt
 
