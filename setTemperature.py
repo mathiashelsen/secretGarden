@@ -53,7 +53,7 @@ if pinStatus:
 else:
     # and we are below target, so switch on
     if(currentTemp < targetTemp):
-        gpio.output(heatPin, gpio.HIGH)
+        gpio.output(heaterPin, gpio.HIGH)
 
 pinStatus = gpio.input(heaterPin)
 
