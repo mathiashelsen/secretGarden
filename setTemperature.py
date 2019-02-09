@@ -37,7 +37,7 @@ currentTemp = read_temp()
 
 now = datetime.datetime.now()
 
-startTime = now.replace(hour=16, minute=0)
+startTime = now.replace(hour=14, minute=0)
 stopTime  = now.replace(hour=7, minute=15)
 
 targetTemp = 17.0
