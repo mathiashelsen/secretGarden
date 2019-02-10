@@ -49,24 +49,34 @@ soilHumidity = read_soilhumidity()
 
 
 heaterPin = 18
+ledPin = 23
 
 gpio.setmode(gpio.BCM)
 gpio.setup(heaterPin, gpio.OUT)
+gpio.setup(ledPin, gpio.OUT)
 
-pinStatus   = gpio.input(heaterPin)
+heaterStatus = gpio.input(heaterPin)
+ledStatus = gpio.input(ledPin)
 currentTemp = soilTemperature
 
 now = datetime.datetime.now()
 
 startTime = now.replace(hour=14, minute=0)
-stopTime  = now.replace(hour=7, minute=15)
+stopTime  = now.replace(hour=8, minute=0)
 
 targetTemp = 17.0
 if(now > startTime or now < stopTime):
     targetTemp = 22.0
+    if( not ledStatus ):
+        gpio.output(ledPin, gpio.HIGH)
+else:
+    if(ledStatus):
+        gpio.output(ledPin, gpio.LOW)
+   
+ledStatus = gpio.input(ledPin) 
 
 # Heater is on...
-if pinStatus:
+if heaterStatus:
     # and we have reached target, so switch off
     if(currentTemp > targetTemp):
         gpio.output(heaterPin, gpio.LOW)
@@ -76,14 +86,18 @@ else:
     if(currentTemp < targetTemp):
         gpio.output(heaterPin, gpio.HIGH)
 
-pinStatus = gpio.input(heaterPin)
+heaterStatus = gpio.input(heaterPin)
 
 fp = open('/var/www/html/heaterPin.txt', 'w')
-fp.write(str(pinStatus) + '\n' + str(targetTemp)+ '\n' + str(currentTemp) + '\n' )
+fp.write(str(heaterStatus) + '\n' + str(targetTemp)+ '\n' + str(currentTemp) + '\n' )
+fp.close()
+
+fp = open('/var/www/html/ledPin.txt', 'w')
+fp.write(str(ledStatus) + '\n' )
 fp.close()
 
 timeStr = now.strftime("%d/%m/%Y %H:%M")
-logStr  = timeStr + '\t' + str(soilTemperature) + '\t' + str(soilHumidity) + '\t' + str(airTemperature) + '\t' + str(airHumidity) + '\t' + str(pinStatus*80 + 10) + '\n'
+logStr  = timeStr + '\t' + str(soilTemperature) + '\t' + str(soilHumidity) + '\t' + str(airTemperature) + '\t' + str(airHumidity) + '\t' + str(heaterStatus*80 + 10)  +'\t' + str(ledStatus*80 + 10) + '\n'
 fp = open('secretGardenLog.txt', 'a')
 fp.write(logStr)
 fp.close()
