@@ -7,3 +7,9 @@ Currently using:
  - ESP8266 using nodemcu (Lua framework, compiled with the ADC feature)
  - DS18B20
  - Capacitive soil sensors (eBay)
+ 
+Dependencies:
+ - pySerial (soil humidity)
+ - adafruit DHT22 library
+ - 1-wire support (config file)
+ - nginx + php
