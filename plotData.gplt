@@ -19,29 +19,29 @@ set y2tics nomirror
 set y2range [0:100]
 
 set output "/var/www/html/lastHourTemp.png"
-plot "lastHourLog.txt" u 1:3 w linesp ls 1 title "Soil Temperature", \
-"lastHourLog.txt" u 1:4 w linesp ls 5 axis x1y2 title "Soil Humidity",\
-"lastHourLog.txt" u 1:5 w linesp ls 2 axis x1y1 title "Air Temperature",\
-"lastHourLog.txt" u 1:6 w linesp ls 5 axis x1y2 title "Air Humidity",\
-"lastHourLog.txt" u 1:7 w linesp ls 6 axis x1y2 title "Heater Status"
+plot "lastHourLog.txt" u 1:3 w linesp ls 11 title "Soil Temperature", \
+"lastHourLog.txt" u 1:4 w linesp ls 12 axis x1y2 title "Soil Humidity",\
+"lastHourLog.txt" u 1:5 w linesp ls 13 axis x1y1 title "Air Temperature",\
+"lastHourLog.txt" u 1:6 w linesp ls 14 axis x1y2 title "Air Humidity",\
+"lastHourLog.txt" u 1:7 w linesp ls 15 axis x1y2 title "Heater Status"
 unset output
 
 unset key
 set output "/var/www/html/lastDayTemp.png"
-plot "lastDayLog.txt" u 1:3 w linesp ls 1 title "Soil Temperature", \
-"lastDayLog.txt" u 1:4 w linesp ls 5 axis x1y2 title "Soil Humidity",\
-"lastDayLog.txt" u 1:5 w linesp ls 2 axis x1y1 title "Air Temperature",\
-"lastDayLog.txt" u 1:6 w linesp ls 5 axis x1y2 title "Air Humidity",\
-"lastDayLog.txt" u 1:7 w linesp ls 6 axis x1y2 title "Heater Status"
+plot "lastDayLog.txt" u 1:3 w linesp ls 11 title "Soil Temperature", \
+"lastDayLog.txt" u 1:4 w linesp ls 12 axis x1y2 title "Soil Humidity",\
+"lastDayLog.txt" u 1:5 w linesp ls 13 axis x1y1 title "Air Temperature",\
+"lastDayLog.txt" u 1:6 w linesp ls 14 axis x1y2 title "Air Humidity",\
+"lastDayLog.txt" u 1:7 w linesp ls 15 axis x1y2 title "Heater Status"
 unset output
 
 set output "/var/www/html/allTime.png"
 set format x "%d-%H h"
-plot "secretGardenLog.txt" u 1:3 w linesp ls 1 title "Soil Temperature", \
-"secretGardenLog.txt" u 1:4 w linesp ls 5 axis x1y2 title "Soil Humidity",\
-"secretGardenLog.txt" u 1:5 w linesp ls 2 axis x1y1 title "Air Temperature",\
-"secretGardenLog.txt" u 1:6 w linesp ls 5 axis x1y2 title "Air Humidity",\
-"secretGardenLog.txt" u 1:7 w linesp ls 6 axis x1y2 title "Heater Status"
+plot "secretGardenLog.txt" u 1:3 w linesp ls 11 title "Soil Temperature", \
+"secretGardenLog.txt" u 1:4 w linesp ls 12 axis x1y2 title "Soil Humidity",\
+"secretGardenLog.txt" u 1:5 w linesp ls 13 axis x1y1 title "Air Temperature",\
+"secretGardenLog.txt" u 1:6 w linesp ls 14 axis x1y2 title "Air Humidity",\
+"secretGardenLog.txt" u 1:7 w linesp ls 15 axis x1y2 title "Heater Status"
 unset output
 
 #set output "/var/www/html/lastDayTemp.png"
